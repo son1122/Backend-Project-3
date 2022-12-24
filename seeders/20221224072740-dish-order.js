@@ -12,13 +12,17 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    await queryInterface.bulkInsert("DishOrders", [
-      {
-        dishId: 1,
-        orderId: 1,
-        amount: 2,
-      },
-    ]);
+    await queryInterface.bulkInsert(
+      "DishOrders",
+      [
+        {
+          dishId: 1,
+          orderId: 1,
+          amount: 2,
+        },
+      ],
+      {}
+    );
   },
 
   async down(queryInterface, Sequelize) {

@@ -12,11 +12,15 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    await queryInterface.bulkInsert("Tables", [
-      {
-        capacity: 6,
-      },
-    ]);
+    await queryInterface.bulkInsert(
+      "Tables",
+      [
+        {
+          capacity: 6,
+        },
+      ],
+      {}
+    );
   },
 
   async down(queryInterface, Sequelize) {

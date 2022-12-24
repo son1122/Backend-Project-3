@@ -13,12 +13,16 @@ module.exports = {
      * }], {});
      */
 
-    await queryInterface.bulkInsert("Orders", [
-      {
-        tableId: 1,
-        customerId: 1,
-      },
-    ]);
+    await queryInterface.bulkInsert(
+      "Orders",
+      [
+        {
+          tableId: 1,
+          customerId: 1,
+        },
+      ],
+      {}
+    );
   },
 
   async down(queryInterface, Sequelize) {
