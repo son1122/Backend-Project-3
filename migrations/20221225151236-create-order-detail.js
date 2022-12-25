@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable(
-      "DishOrders",
+      "OrderDetails",
       {
         id: {
           allowNull: false,
@@ -11,39 +11,39 @@ module.exports = {
           primaryKey: true,
           type: Sequelize.INTEGER,
         },
-        dishId: {
+        order_id: {
           type: Sequelize.INTEGER,
           allowNull: false,
         },
-        orderId: {
+        menu_item_id: {
           type: Sequelize.INTEGER,
           allowNull: false,
         },
-        amount: {
+        quantity: {
           type: Sequelize.INTEGER,
           allowNull: false,
         },
         createdAt: {
+          defaultValue: new Date(),
           allowNull: false,
           type: Sequelize.DATE,
-          defaultValue: new Date(),
         },
         updatedAt: {
-          allowNull: false,
           defaultValue: new Date(),
+          allowNull: false,
           type: Sequelize.DATE,
         },
       },
       {
         uniqueKeys: {
           actions_unique: {
-            fields: ["dishId", "orderId"],
+            fields: ["order_id", "menu_item_id"],
           },
         },
       }
     );
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("DishOrders");
+    await queryInterface.dropTable("OrderDetails");
   },
 };

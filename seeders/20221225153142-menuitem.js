@@ -9,37 +9,42 @@ module.exports = {
      * Example:
      */
     await queryInterface.bulkInsert(
-      "Dishes",
+      "MenuItems",
       [
         {
           name: "Fried Rice",
-          price: 50,
+          description: "Garlic Fried Rice",
+          price: 50.0,
           img: "https://i.imgur.com/YA2TsH2.jpg",
-          categoryId: 1,
+          category: "food",
         },
         {
           name: "Pad Kra Pao",
-          price: 50,
+          description: "Stir fried basil with chosen meat",
+          price: 50.0,
           img: "https://i.imgur.com/vt6al2K.jpg",
-          categoryId: 1,
+          category: "food",
         },
         {
-          name: "Tom Yam Kung",
-          price: 100,
+          name: "Tom Yum Kung",
+          description: "Shrimp Tom Yum Soup",
+          price: 150.0,
           img: "https://i.imgur.com/sCmxZ5S.jpg",
-          categoryId: 1,
+          category: "food",
         },
         {
-          name: "Coke",
-          price: 15,
+          name: "Coca Cola",
+          description: "",
+          price: 15.0,
           img: "https://i.imgur.com/w13enO5.jpg",
-          categoryId: 2,
+          category: "beverage",
         },
         {
           name: "Water",
-          price: 10,
+          description: "Garlic Fried Rice",
+          price: 12.5,
           img: "https://i.imgur.com/vC031VP.jpg",
-          categoryId: 2,
+          category: "beverage",
         },
       ],
       {}
@@ -52,6 +57,6 @@ module.exports = {
      *
      * Example:
      */
-    await queryInterface.bulkDelete("Dishes", null, {});
+    await queryInterface.bulkDelete("MenuItems", null, {});
   },
 };

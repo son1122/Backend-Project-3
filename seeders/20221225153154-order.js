@@ -7,25 +7,27 @@ module.exports = {
      * Add seed commands here.
      *
      * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
      */
     await queryInterface.bulkInsert(
-      "Customers",
+      "Orders",
       [
         {
-          name: "Tonson",
-          phone: "012-345-6789",
+          table_number: 1,
+          customer_id: 1,
+          order_date: new Date(),
+          status: "pending",
         },
         {
-          name: "Jordan",
-          phone: "034-567-8912",
+          table_number: 2,
+          customer_id: null,
+          order_date: new Date(),
+          status: "inprogress",
         },
         {
-          name: "Toncha",
-          phone: "045-678-9123",
+          table_number: 3,
+          customer_id: 2,
+          order_date: new Date(),
+          status: "completed",
         },
       ],
       {}
@@ -38,6 +40,6 @@ module.exports = {
      *
      * Example:
      */
-    await queryInterface.bulkDelete("Customers", null, {});
+    await queryInterface.bulkDelete("Orders", null, {});
   },
 };

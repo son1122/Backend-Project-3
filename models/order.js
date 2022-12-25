@@ -9,19 +9,21 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Order.belongsTo(models.Table, { foreignKey: "tableId" });
-      Order.belongsTo(models.Customer, { foreignKey: "customerId" });
-      Order.belongsToMany(models.Dish, {
-        through: "DishOrder",
-        foreignKey: "orderId",
-        otherKey: "dishId",
+      Order.belongsTo(models.Table, { foreignKey: "table_number" });
+      Order.belongsTo(models.Customer, { foreignKey: "customer_id" });
+      Order.belongsToMany(models.MenuItem, {
+        through: "OrderDetail",
+        foreignKey: "order_id",
+        otherKey: "menu_item_id",
       });
     }
   }
   Order.init(
     {
-      tableId: DataTypes.INTEGER,
-      customerId: DataTypes.INTEGER,
+      table_number: DataTypes.INTEGER,
+      customer_id: DataTypes.INTEGER,
+      order_date: DataTypes.DATE,
+      status: DataTypes.STRING,
     },
     {
       sequelize,
