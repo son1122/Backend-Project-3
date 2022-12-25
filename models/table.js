@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       table_number: DataTypes.INTEGER,
       capacity: DataTypes.INTEGER,
+      table_status: DataTypes.STRING,
     },
     {
       sequelize,

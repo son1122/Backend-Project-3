@@ -18,6 +18,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
+      table_status: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
       createdAt: {
         defaultValue: new Date(),
         allowNull: false,
