@@ -15,11 +15,17 @@ module.exports = {
           firstname: "John",
           lastname: "Doe",
           phone: "011-111-1111",
+          email: "johndoe@mail.com",
+          username: "johndoe",
+          password: "1234",
         },
         {
           firstname: "Jane",
           lastname: "Doe",
           phone: "022-222-2222",
+          email: "janedoe@mail.com",
+          username: "janedoe",
+          password: "1234",
         },
       ],
       {}
