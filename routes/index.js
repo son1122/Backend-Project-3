@@ -1,3 +1,6 @@
 module.exports = {
-    // users:require('./users'),
+    auth: require('./auth'),
+    order: require('./order'),
+    dashboard: require('./dashboard'),
+    table: require('./table'),
 }
