@@ -1,5 +1,5 @@
 const MenuItems = require("../models").MenuItem;
-
+const { Op } = require("sequelize");
 //Get all menu items (just in case we want all of the menu items)
 const getAllMenuItem = async (req, res) => {
   try {
@@ -26,7 +26,31 @@ const allMenuItemByCategory = async (req, res) => {
     res.status(500).send({ message: "Menu by Id not found." });
   }
 };
+
+//Get menu item by query given from the search bar.
+const searchMenuItem = async (req, res) => {
+  try {
+    const { q: query } = req.query;
+    if (query) {
+      await MenuItems.findAll({
+        where: { name: { [Op.iLike]: `%${query}%` } },
+      }).then((menuitems) => {
+        res.send(menuitems);
+      });
+    } else {
+      await MenuItems.findAll({
+        where: { category: "food" },
+      }).then((menuitems) => {
+        res.send(menuitems);
+      });
+    }
+  } catch (error) {
+    res.status(500).send({ message: "Searched Menu Item not found." });
+  }
+};
+
 module.exports = {
   getAllMenuItem,
   allMenuItemByCategory,
+  searchMenuItem,
 };
