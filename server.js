@@ -41,17 +41,7 @@ const verifyToken = (req, res, next) => {
   });
 };
 
-<<<<<<< Updated upstream
-// app.use('/order', verifyToken, routes.order)`;
-// app.use('/table', verifyToken, routes.table);
-// app.use('/dashboard', verifyToken, routes.dashboard`);
-app.use("/order", routes.order);
-app.use("/menu_items", routes.menuitems);
-app.use("/table", routes.table);
-app.use("/dashboard", routes.dashboard);
-app.use("/login", routes.auth);
-app.use("/signup", routes.auth);
-=======
+
 app.use('/order', verifyToken, routes.order);
 app.use('/table', verifyToken, routes.table);
 app.use('/dashboard', verifyToken, routes.dashboard);
@@ -61,7 +51,6 @@ app.use('/menuitem', verifyToken, routes.menuitems);
 // app.use("/table", routes.table);
 // app.use("/dashboard", routes.dashboard);
 app.use("/auth", routes.auth);
->>>>>>> Stashed changes
 
 //app will run on port
 app.listen(process.env.PORT, () => {
