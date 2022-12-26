@@ -53,7 +53,7 @@ const verifyToken = (req, res, next) => {
 // app.use('/table', verifyToken, routes.table);
 // app.use('/dashboard', verifyToken, routes.dashboard`);
 app.use("/order", routes.order);
-app.use("/menuitems", routes.menuitems);
+app.use("/menu_items", routes.menuitems);
 app.use("/table", routes.table);
 app.use("/dashboard", routes.dashboard);
 app.use("/login", routes.auth);
