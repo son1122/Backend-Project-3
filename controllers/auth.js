@@ -1,12 +1,8 @@
-// const User = require('../models').User
-const User = 1;
+const User = require('../models').User
 const bcrypt = require('bcryptjs')
 require('dotenv').config()
 const jwt = require('jsonwebtoken')
 
-const renderSignup = (req, res) => {
-    res.render('users/signup.ejs')
-}
 
 const signup = (req, res) => {
     bcrypt.genSalt(10, (err, salt) => {
@@ -29,7 +25,7 @@ const signup = (req, res) => {
                         }
                     )
 
-                    res.cookie("jwt", token)
+                    // res.cookie("jwt", token)
                     res.json({message: "Signed up"})
                     // res.redirect(`/users/profile/${newUser.id}`);
                 })
@@ -42,44 +38,67 @@ const signup = (req, res) => {
     })
 }
 
-const renderLogin = (req, res) => {
-    res.render('users/login.ejs')
-}
+
 
 const login = (req, res) => {
-    User.findOne({
-        where: {
-            username: req.body.username
-        }
-    })
-        .then(foundUser => {
-            if (foundUser) {
-                bcrypt.compare(req.body.password, foundUser.password, (err, match) => {
-                    if (match) {
-                        const token = jwt.sign(
-                            {
-                                username: foundUser.username,
-                                id: foundUser.id
-                            },
-                            process.env.JWT_SECRET,
-                            {
-                                expiresIn: "30 days",
-                            }
-                        )
+    console.log(req.body)
+    try {
+        User.findOne({
+            where: {
+                username: req.body.username
+            }
+        })
+            .then(foundUser => {
+                if (foundUser) {
+                    bcrypt.compare(req.body.password, foundUser.password, (err, match) => {
+                        if (match) {
+                            const token = jwt.sign(
+                                {
+                                    username: foundUser.username,
+                                    id: foundUser.id
+                                },
+                                process.env.JWT_SECRET,
+                                {
+                                    expiresIn: "30 days",
+                                }
+                            )
 
-                        // res.cookie("jwt", token)
-                        res.json(token)
-                    } else {
-                        return res.sendStatus(400)
-                    }
-                })
+                            res.cookie("jwt", token)
+                            res.json(token)
+                        } else {
+                            return res.sendStatus(400)
+                        }
+                    })
+                }else{
+                    return res.sendStatus(400)
+                }
+            }).catch(e=>{
+          return res.sendStatus(500)
+        })
+    }catch (e){
+        return res.sendStatus(500)
+    }
+
+}
+const verify  = (req, res) => {
+        const bearerHeader = req.headers['authorization']
+        if (typeof bearerHeader !== 'undefined') {
+            const bearer = bearerHeader.split(' ')
+            const bearerToken = bearer[1]
+            req.token = bearerToken
+        }
+        jwt.verify(req.token, process.env.JWT_SECRET, (err, decodedUser) => {
+            if (err || !decodedUser){
+                return res.status(401).json({status: "Unauthorized Request"})
+            }else{
+                console.log(decodedUser);
+                return res.status(200).json({status: "authorized Request"})
             }
         })
 }
 
 module.exports = {
-    renderSignup,
     signup,
-    renderLogin,
-    login
+    login,
+    verify
 }

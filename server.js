@@ -1,11 +1,3 @@
-// const express = require("express"); //from documentation: express is function
-// const app = express(); //app is an object
-//
-//
-//
-// app.listen(3009, () => {
-//   console.log("I am listening");
-// });
 
 require("dotenv").config();
 //imported express library
@@ -19,7 +11,7 @@ const cors = require("cors");
 const app = express(); //returns an object
 const routes = require("./routes");
 
-//middleware- every request goes through it
+//middleware-every request goes through it
 app.use(cors());
 app.use(bodyParser);
 app.use(cookieParser());
@@ -49,6 +41,7 @@ const verifyToken = (req, res, next) => {
   });
 };
 
+<<<<<<< Updated upstream
 // app.use('/order', verifyToken, routes.order)`;
 // app.use('/table', verifyToken, routes.table);
 // app.use('/dashboard', verifyToken, routes.dashboard`);
@@ -58,6 +51,17 @@ app.use("/table", routes.table);
 app.use("/dashboard", routes.dashboard);
 app.use("/login", routes.auth);
 app.use("/signup", routes.auth);
+=======
+app.use('/order', verifyToken, routes.order);
+app.use('/table', verifyToken, routes.table);
+app.use('/dashboard', verifyToken, routes.dashboard);
+app.use('/menuitem', verifyToken, routes.menuitems);
+// app.use("/order", routes.order);
+// app.use("/menuitems", routes.menuitems);
+// app.use("/table", routes.table);
+// app.use("/dashboard", routes.dashboard);
+app.use("/auth", routes.auth);
+>>>>>>> Stashed changes
 
 //app will run on port
 app.listen(process.env.PORT, () => {

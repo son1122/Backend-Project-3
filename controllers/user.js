@@ -1,7 +1,7 @@
 // const User = require('../models').User;
 const User = 1;
 
-const renderProfile = (req, res) => {
+const getProfile = (req, res) => {
     User.findByPk(req.params.index, {
         include: [{
             model: Fruit,
@@ -39,7 +39,7 @@ const deleteUser = (req, res) => {
 }
 
 module.exports = {
-    renderProfile,
+    getProfile,
     editProfile,
     deleteUser
 }
