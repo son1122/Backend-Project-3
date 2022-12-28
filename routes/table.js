@@ -1,7 +1,7 @@
-const express = require('express');
-const router = express.Router();//creates a router object
-const ctrl = require('../controllers');
+const express = require("express");
+const router = express.Router(); //creates a router object
+const ctrl = require("../controllers");
 
-router.get('/', ctrl.table.testTable);
+router.get("/", ctrl.table.getAllTable);
 
-module.exports = router
+module.exports = router;
