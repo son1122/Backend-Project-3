@@ -10,12 +10,10 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       table_number: {
-        unique: true,
         allowNull: false,
         type: Sequelize.INTEGER,
       },
       customer_id: {
-        unique: true,
         allowNull: true,
         type: Sequelize.INTEGER,
       },
