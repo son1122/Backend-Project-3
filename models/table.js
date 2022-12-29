@@ -10,6 +10,11 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Table.hasMany(models.Order, { foreignKey: "table_number" });
+      Table.belongsToMany(models.Waiter,{
+        through:"WaiterTable",
+        foreignKey:"tableId",
+        otherKey:"waiterId"
+      })
     }
   }
   Table.init(
