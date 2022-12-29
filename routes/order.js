@@ -4,5 +4,6 @@ const ctrl = require("../controllers");
 
 router.get("/", ctrl.order.testOrder);
 router.post("/", ctrl.order.createOrder);
+router.get("/detail", ctrl.order.showOrderDetail);
 
 module.exports = router;

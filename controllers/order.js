@@ -34,11 +34,26 @@ const createOrder = async (req, res) => {
     }
   }
 
+  // show Ordersdetail
+
+  
   res.json({
     success: { message: "Added order successfully." },
   });
 };
+
+const showOrderDetail = (req,res )=>{
+  OrderDetail.findAll()
+  .then(orderDetail =>{
+    console.log("fucntion is working")
+    res.json(orderDetail)
+  })
+}
+
+
+
 module.exports = {
   testOrder,
   createOrder,
+  showOrderDetail
 };
