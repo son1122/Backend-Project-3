@@ -12,9 +12,6 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      quantity: {
-        type: Sequelize.INTEGER
-      },
       description: {
         type: Sequelize.STRING
       },
@@ -40,7 +37,13 @@ module.exports = {
         type: Sequelize.BOOLEAN
       },
       calories: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
+      },
+      stock: {
+        type: Sequelize.DOUBLE
+      },
+      unit: {
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,

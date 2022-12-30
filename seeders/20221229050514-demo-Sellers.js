@@ -17,6 +17,13 @@ module.exports = {
         description:"i like this seller 2",
         phone: "0900005678"
       },
+      {
+        name:'I am Seller 3',
+        companyId:2,
+        locationId:1,
+        description:"i like this seller 3",
+        phone: "09120005678"
+      }
     ], {});
   },
 
