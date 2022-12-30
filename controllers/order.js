@@ -55,6 +55,14 @@ const showOrder = (req, res) => {
     });
 };
 
+const orderByTable = (req,res )=>{
+  Order.findAll({where: {table_number:req.params.index}
+  })
+  .then(orderDetail =>{
+    console.log("fucntion is working")
+    res.json(orderDetail)
+  })
+}
 
 const showOrderDetail = (req,res )=>{
   OrderDetail.findAll({where: {order_id:req.params.index}
@@ -71,5 +79,6 @@ module.exports = {
   testOrder,
   createOrder,
   showOrder,
+  orderByTable,
   showOrderDetail
 };
