@@ -41,14 +41,10 @@ const verifyToken = (req, res, next) => {
 };
 
 //Case sensitives recheck with React components if one of the link is not working
-app.use("/order", routes.order);
-app.use("/table", routes.table);
-app.use("/dashboard", routes.dashboard);
-app.use("/menu_items", routes.menuitems);
-// app.use("/order", routes.order);
-// app.use("/menuitems", routes.menuitems);
-// app.use("/table", routes.table);
-// app.use("/dashboard", routes.dashboard);
+app.use("/order",verifyToken, routes.order);
+app.use("/table",verifyToken, routes.table);
+app.use("/dashboard",verifyToken, routes.dashboard);
+app.use("/menu_items",verifyToken, routes.menuitems);
 app.use("/auth", routes.auth);
 
 //app will run on port
