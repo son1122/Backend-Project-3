@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('Chef', [
+    await queryInterface.bulkInsert('Waiters', [
       {
         username: "gordon1234",
         password: "1234",
@@ -11,7 +11,7 @@ module.exports = {
         phone: "090909090",
         firstName: "Gordon",
         lastName: "Lamsy",
-        gorvermentId: "123123123123123",
+        govermentId: "123123123123123",
         nickName: "YesChef",
       },
       {
@@ -21,7 +21,7 @@ module.exports = {
         phone: "090909090",
         firstName: "Gordon",
         lastName: "Lamsy",
-        gorvermentId: "123123123123123",
+        govermentId: "123123123123123",
         nickName: "NoChef",
       },
 
@@ -36,6 +36,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('Waiter', null, {});
+    await queryInterface.bulkDelete('Waiters', null, {});
   }
 };
