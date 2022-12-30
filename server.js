@@ -43,7 +43,7 @@ const verifyToken = (req, res, next) => {
 //Case sensitives recheck with React components if one of the link is not working
 app.use("/order", routes.order);
 app.use("/table", routes.table);
-app.use("/dashboard", verifyToken, routes.dashboard);
+app.use("/dashboard", routes.dashboard);
 app.use("/menu_items", routes.menuitems);
 // app.use("/order", routes.order);
 // app.use("/menuitems", routes.menuitems);

@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Waiter.belongsToMany(models.Tables,{
-        through:"WaiterTable",
+      Waiter.belongsToMany(models.Table,{
+        through:"WaiterTables",
         foreignKey:"waiterId",
         otherKey:"tableId"
       })
@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     govermentId: DataTypes.STRING,
-    nickName: DataTypes.STRING
+    nickName: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Waiter',
