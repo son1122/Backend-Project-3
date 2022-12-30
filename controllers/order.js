@@ -44,6 +44,18 @@ const createOrder = async (req, res) => {
   });
 };
 
+const showOrder = (req, res) => {
+  Order.findByPk(req.params.index)
+    .then((item) => {
+      console.log(item);
+      res.json(item);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+
 const showOrderDetail = (req,res )=>{
   OrderDetail.findAll({where: {order_id:req.params.index}
   })
@@ -58,5 +70,6 @@ const showOrderDetail = (req,res )=>{
 module.exports = {
   testOrder,
   createOrder,
+  showOrder,
   showOrderDetail
 };
