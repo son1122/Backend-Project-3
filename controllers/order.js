@@ -1,3 +1,5 @@
+const { user } = require(".");
+
 const Order = require("../models").Order;
 const OrderDetail = require("../models").OrderDetail;
 
@@ -43,7 +45,8 @@ const createOrder = async (req, res) => {
 };
 
 const showOrderDetail = (req,res )=>{
-  OrderDetail.findAll()
+  OrderDetail.findAll({where: {order_id:req.params.index}
+  })
   .then(orderDetail =>{
     console.log("fucntion is working")
     res.json(orderDetail)
