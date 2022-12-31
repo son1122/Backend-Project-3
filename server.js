@@ -41,10 +41,11 @@ const verifyToken = (req, res, next) => {
 // app.use("/order",verifyToken, routes.order);
 app.use("/order", routes.order);
 app.use("/table",routes.table);
-app.use("/dashboard", routes.dashboard);
+app.use("/dashboard",verifyToken, routes.dashboard);
 app.use("/menu_items", routes.menuitems);
 app.use("/auth", routes.auth);
 app.use("/api",routes.api);
+app.use("/customer",routes.customer);
 //app will run on port
 app.listen(process.env.PORT, () => {
   console.log(`Listening on port ${process.env.PORT}`);
