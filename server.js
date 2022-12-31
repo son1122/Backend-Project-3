@@ -19,15 +19,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
 const verifyToken = (req, res, next) => {
-  // let token = req.cookies.jwt
   const bearerHeader = req.headers["authorization"];
   if (typeof bearerHeader !== "undefined") {
     const bearer = bearerHeader.split(" ");
     const bearerToken = bearer[1];
     req.token = bearerToken;
   }
-
-  console.log(req.token);
 
   jwt.verify(req.token, process.env.JWT_SECRET, (err, decodedUser) => {
     if (err || !decodedUser)
@@ -41,14 +38,10 @@ const verifyToken = (req, res, next) => {
 };
 
 //Case sensitives recheck with React components if one of the link is not working
-app.use("/order", routes.order);
-app.use("/table", routes.table);
-app.use("/dashboard", verifyToken, routes.dashboard);
-app.use("/menu_items", routes.menuitems);
-// app.use("/order", routes.order);
-// app.use("/menuitems", routes.menuitems);
-// app.use("/table", routes.table);
-// app.use("/dashboard", routes.dashboard);
+app.use("/order",verifyToken, routes.order);
+app.use("/table",routes.table);
+app.use("/dashboard",verifyToken, routes.dashboard);
+app.use("/menu_items",verifyToken, routes.menuitems);
 app.use("/auth", routes.auth);
 
 //app will run on port
