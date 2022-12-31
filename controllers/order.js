@@ -44,9 +44,9 @@ const createOrder = async (req, res) => {
   });
 };
 
+
 const showOrderDetail = (req,res )=>{
-  OrderDetail.findAll({where: {order_id:req.params.index}
-  })
+  OrderDetail.findAll()
   .then(orderDetail =>{
     console.log("fucntion is working")
     res.json(orderDetail)
@@ -54,9 +54,36 @@ const showOrderDetail = (req,res )=>{
 }
 
 
+const orderByTable = (req,res )=>{
+  Order.findAll({where: {table_number:req.params.index,
+                          status:'inprogress'}
+  })
+  .then(item =>{
+    console.log("fucntion is working")
+    res.json(item)
+  })
+}
+
+
+
+const showOrder = (req, res) => {
+  Order.findByPk(req.params.index)
+    .then((item) => {
+      console.log(item);
+      res.json(item);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  };
+
+
+
 
 module.exports = {
   testOrder,
   createOrder,
+  showOrder,
+  orderByTable,
   showOrderDetail
 };
