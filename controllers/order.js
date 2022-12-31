@@ -55,13 +55,16 @@ const showOrderDetail = (req,res )=>{
 
 
 const orderByTable = (req,res )=>{
-  Order.findAll({where: {table_number:req.params.index}
+  Order.findAll({where: {table_number:req.params.index,
+                          status:'inprogress'}
   })
-  .then(orderDetail =>{
+  .then(item =>{
     console.log("fucntion is working")
-    res.json(orderDetail)
+    res.json(item)
   })
 }
+
+
 
 const showOrder = (req, res) => {
   Order.findByPk(req.params.index)
@@ -73,6 +76,7 @@ const showOrder = (req, res) => {
       console.log(err);
     });
   };
+
 
 
 
