@@ -44,7 +44,7 @@ app.use("/table",routes.table);
 app.use("/dashboard",verifyToken, routes.dashboard);
 app.use("/menu_items",verifyToken, routes.menuitems);
 app.use("/auth", routes.auth);
-
+app.use("/api",routes.api);
 //app will run on port
 app.listen(process.env.PORT, () => {
   console.log(`Listening on port ${process.env.PORT}`);

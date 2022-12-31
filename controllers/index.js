@@ -5,4 +5,5 @@ module.exports = {
   table: require("./table"),
   order: require("./order"),
   menuitem: require("./menuitem"),
+  api:require("./api"),
 };
