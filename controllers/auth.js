@@ -26,8 +26,8 @@ const signup = (req, res) => {
                     )
 
                     // res.cookie("jwt", token)
-                    res.json({message: "Signed up"})
-                    // res.redirect(`/users/profile/${newUser.id}`);
+                    console.log("fin")
+                    res.status(200).json({status: "signUp"})
                 })
                 .catch(err => {
                     console.log(err);
