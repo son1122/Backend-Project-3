@@ -44,16 +44,15 @@ const createOrder = async (req, res) => {
   });
 };
 
-const showOrder = (req, res) => {
-  Order.findByPk(req.params.index)
-    .then((item) => {
-      console.log(item);
-      res.json(item);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
+
+const showOrderDetail = (req,res )=>{
+  OrderDetail.findAll()
+  .then(orderDetail =>{
+    console.log("fucntion is working")
+    res.json(orderDetail)
+  })
+}
+
 
 const orderByTable = (req,res )=>{
   Order.findAll({where: {table_number:req.params.index}
@@ -64,14 +63,16 @@ const orderByTable = (req,res )=>{
   })
 }
 
-const showOrderDetail = (req,res )=>{
-  OrderDetail.findAll({where: {order_id:req.params.index}
-  })
-  .then(orderDetail =>{
-    console.log("fucntion is working")
-    res.json(orderDetail)
-  })
-}
+const showOrder = (req, res) => {
+  Order.findByPk(req.params.index)
+    .then((item) => {
+      console.log(item);
+      res.json(item);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  };
 
 
 
