@@ -264,7 +264,22 @@ const dataId= (req, res) => {
             res.status(500).send({ message: "Order not found." });
         }
     });
+
 }
+const menu= async (req, res) => {
+    console.log("TEST1")
+    try {
+        await MenuItem.findAll( {
+            attributes: ['name'],
+        })
+            .then(fruit => {
+                res.json(fruit)
+            })
+    } catch (err) {
+        console.log(err)
+        res.status(500).send({ message: "menu found." });
+    }
+};
 module.exports = {
     signup,
     login,
@@ -272,5 +287,6 @@ module.exports = {
     test,
     edit,
     data,
-    dataId
+    dataId,
+    menu,
 }

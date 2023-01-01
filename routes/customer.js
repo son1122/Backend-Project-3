@@ -9,4 +9,5 @@ router.get('/verify', ctrl.customer.verify);
 router.put('/edit', ctrl.customer.edit);
 router.get('/data/', ctrl.customer.data);
 router.get('/data/:id', ctrl.customer.dataId);
+router.get('/menu', ctrl.customer.menu);
 module.exports = router
