@@ -207,11 +207,11 @@ const data= (req, res) => {
     try {
          Order.findAll( {
             where:{customer_id:decodedUser.id},
-            // include: [
-            //     { model: MenuItem,
+            include: [
+                { model: MenuItem,
                     // attributes:['name','id','unit'],
-            //     }
-            // ],
+                }
+            ],
             //  limit: 20,
              order: [['id', 'ASC']],
             attributes: ['id']
