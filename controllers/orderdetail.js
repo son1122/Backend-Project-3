@@ -32,7 +32,12 @@ const getOrderDetailMatch = async (req, res) => {
         (sum, detail) => sum + detail.quantity,
         0
       );
-      return { name: item.name, quantity: totalQuantity, price: item.price };
+      return {
+        img: item.img,
+        name: item.name,
+        quantity: totalQuantity,
+        price: item.price,
+      };
     });
     res.send({ menuItems: menuItemsWithQuantities });
   } catch (error) {

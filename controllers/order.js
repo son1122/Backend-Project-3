@@ -42,7 +42,22 @@ const createOrder = async (req, res) => {
     success: { message: "Added order successfully." },
   });
 };
-
+//Update order status after clicking confirm (testing)
+const updateOrderStatus = async (req, res) => {
+  await Order.findAll({
+    where: { table_number: req.params.tableNumber, status: "inprogress" },
+  })
+    .then((orders) => {
+      const orderIds = orders.map((order) => order.id);
+      return Order.update(
+        { status: "completed" },
+        { where: { id: orderIds } }
+      ).then(() => ({ success: true }));
+    })
+    .catch((err) => {
+      throw new Error(err.message);
+    });
+};
 const showOrderDetail = (req, res) => {
   OrderDetail.findAll().then((orderDetail) => {
     console.log("fucntion is working");
@@ -76,4 +91,5 @@ module.exports = {
   showOrder,
   orderByTable,
   showOrderDetail,
+  updateOrderStatus,
 };
