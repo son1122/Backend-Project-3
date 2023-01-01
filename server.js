@@ -42,7 +42,7 @@ const verifyToken = (req, res, next) => {
 app.use("/order", routes.order);
 app.use("/table",routes.table);
 app.use("/dashboard",verifyToken, routes.dashboard);
-app.use("/menu_items",verifyToken, routes.menuitems);
+app.use("/menu_items", routes.menuitems);
 app.use("/auth", routes.auth);
 
 //app will run on port

@@ -6,6 +6,8 @@ router.get("/", ctrl.order.testOrder);
 router.post("/", ctrl.order.createOrder);
 router.get("/detail", ctrl.order.showOrderDetail);
 router.get("/table/:index", ctrl.order.orderByTable)
+router.put("/table/:index", ctrl.order.checkOut)
 router.get("/:index", ctrl.order.showOrder);
+router.get("/detail/:index", ctrl.order.orderDetailByTable);
 
 module.exports = router;
