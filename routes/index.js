@@ -4,5 +4,6 @@ module.exports = {
   dashboard: require("./dashboard"),
   table: require("./table"),
   menuitems: require("./menuitems"),
-  api:require("./api")
+  api: require("./api"),
+  orderdetail: require("./orderdetail"),
 };
