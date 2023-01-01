@@ -280,6 +280,28 @@ const menu= async (req, res) => {
         res.status(500).send({ message: "menu found." });
     }
 };
+const deleteUser= async (req, res) => {
+    const bearerHeader = req.headers["authorization"];
+    if (typeof bearerHeader !== "undefined") {
+        const bearer = bearerHeader.split(" ");
+        const bearerToken = bearer[1];
+        req.token = bearerToken;
+    }
+
+    jwt.verify(req.token, process.env.JWT_SECRET, (err, decodedUser) => {
+        if (err || !decodedUser)
+            return res.status(401).json({ error: "Unauthorized Request" });
+
+        req.user = decodedUser;
+        // console.log(decodedUser);
+        console.log(decodedUser.username);
+        console.log(decodedUser.id);
+        //real
+        User.destroy({ where: { id: decodedUser.id } });
+        //test
+        // User.destroy({ where: { id:1 } });
+    })
+};
 module.exports = {
     signup,
     login,
@@ -289,4 +311,5 @@ module.exports = {
     data,
     dataId,
     menu,
+    deleteUser
 }
