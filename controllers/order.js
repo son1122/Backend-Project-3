@@ -66,8 +66,8 @@ const orderByTable = (req,res )=>{
 }
 
 const checkOut = (req,res )=>{
-  Order.findAll({where: {table_number:req.params.index,
-                          status:'inprogress'}
+  Order.update(req.body,{
+    where: {table_number:req.params.index,status:'inprogress'}
   })
   .then(item =>{
     console.log("fucntion is working")
