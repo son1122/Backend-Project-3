@@ -31,7 +31,8 @@ const getMenu= async (req, res) => {
     console.log("TEST1")
     try {
         await MenuItem.findAll( {
-            attributes: ['name','id','img','price']
+            attributes: ['name','id','img','price'],
+
         })
             .then(fruit => {
                 console.log("menu get")
