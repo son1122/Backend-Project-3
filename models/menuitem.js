@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
           otherKey:"chefId"
       });
       MenuItem.belongsToMany(models.Ingredient,{
-          through: "MenuitemIngredient",
+          through: "MenuItemIngredient",
           foreignKey:"menuItemId",
           otherKey:"ingredientId"
       })
