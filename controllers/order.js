@@ -1,4 +1,5 @@
 const { user } = require(".");
+const { order } = require("../routes");
 
 const Order = require("../models").Order;
 const OrderDetail = require("../models").OrderDetail;
@@ -64,7 +65,15 @@ const orderByTable = (req,res )=>{
   })
 }
 
-
+const checkOut = (req,res )=>{
+  Order.update(req.body,{
+    where: {table_number:req.params.index,status:'inprogress'}
+  })
+  .then(item =>{
+    console.log("fucntion is working")
+    res.json(item)
+  })
+}
 
 const showOrder = (req, res) => {
   Order.findByPk(req.params.index)
@@ -77,7 +86,15 @@ const showOrder = (req, res) => {
     });
   };
 
-
+  const orderDetailByTable = (req,res )=>{
+    OrderDetail.findAll({where: {order_id:req.params.index}
+    })
+    .then(item =>{
+      console.log("fucntion is working")
+      res.json(item)
+    })
+  }
+  
 
 
 module.exports = {
@@ -85,5 +102,7 @@ module.exports = {
   createOrder,
   showOrder,
   orderByTable,
-  showOrderDetail
+  showOrderDetail,
+  checkOut,
+  orderDetailByTable
 };

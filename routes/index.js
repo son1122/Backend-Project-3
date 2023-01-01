@@ -5,5 +5,6 @@ module.exports = {
   table: require("./table"),
   menuitems: require("./menuitems"),
   api: require("./api"),
+  customer: require("./customer"),
   orderdetail: require("./orderdetail"),
 };

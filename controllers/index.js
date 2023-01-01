@@ -6,5 +6,6 @@ module.exports = {
   order: require("./order"),
   menuitem: require("./menuitem"),
   api: require("./api"),
+  customer:require("./customer")
   orderdetail: require("./orderdetail"),
 };
