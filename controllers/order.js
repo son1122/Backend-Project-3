@@ -55,7 +55,8 @@ const updateOrderStatus = async (req, res) => {
       ).then(() => ({ success: true }));
     })
     .catch((err) => {
-      throw new Error(err.message);
+      console.log(err);
+      // throw new Error(err.message);
     });
 };
 const showOrderDetail = (req, res) => {

@@ -10,7 +10,12 @@ const getOrderDetailMatch = async (req, res) => {
     });
     //If there is no orders then send "Order not found error"
     if (!orders.length) {
-      return res.status(404).send({ error: "Order not found" });
+      return res
+        .status(404)
+        .send({ error: "Order not found for selected table" });
+      // return res.json({
+      //   failed: { message: "No order found for selected table" },
+      // });
     }
     //Get all orderDetails where order_id is the same as the mapped orders variable.
     const orderDetails = await OrderDetail.findAll({
