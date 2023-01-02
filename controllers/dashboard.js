@@ -4,18 +4,20 @@ const testDashboard = (req, res) => {
 }
 const getDashboard = async (req, res) => {
     try {
-        await OrderDetail.findAll(
-            // {include: { model: menuitem, required: true }}
-        ).then((item) => {
-            const data = [
-                {
-                    type: '分类一',
-                    value: 27,
+        await MenuItem.findAll( {
+            // where:{id:1},
+            include: [
+                { model: Ingredient,
+                    // attributes:['name','id','unit'],
                 }
-            ];
-            console.log(item);
-            res.json(item);
-        });
+            ],
+            // attributes: ['name','id','img','price']
+        })
+            .then(fruit => {
+                console.log(fruit);
+                console.log("TEST")
+                res.json(fruit)
+            })
     } catch (err) {
         res.status(500).send({ message: "Order not found." });
     }
