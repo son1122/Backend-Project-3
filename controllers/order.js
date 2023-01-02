@@ -38,25 +38,58 @@ const createOrder = async (req, res) => {
 
   // show Ordersdetail
 
-  
   res.json({
     success: { message: "Added order successfully." },
   });
 };
-
-const showOrderDetail = (req,res )=>{
-  OrderDetail.findAll({where: {order_id:req.params.index}
+//Update order status after clicking confirm (testing)
+const updateOrderStatus = async (req, res) => {
+  await Order.findAll({
+    where: { table_number: req.params.tableNumber, status: "inprogress" },
   })
-  .then(orderDetail =>{
-    console.log("fucntion is working")
-    res.json(orderDetail)
-  })
-}
+    .then((orders) => {
+      const orderIds = orders.map((order) => order.id);
+      return Order.update(
+        { status: "completed" },
+        { where: { id: orderIds } }
+      ).then(() => ({ success: true }));
+    })
+    .catch((err) => {
+      throw new Error(err.message);
+    });
+};
+const showOrderDetail = (req, res) => {
+  OrderDetail.findAll().then((orderDetail) => {
+    console.log("fucntion is working");
+    res.json(orderDetail);
+  });
+};
 
+const orderByTable = (req, res) => {
+  Order.findAll({
+    where: { table_number: req.params.index, status: "inprogress" },
+  }).then((item) => {
+    console.log("fucntion is working");
+    res.json(item);
+  });
+};
 
+const showOrder = (req, res) => {
+  Order.findByPk(req.params.index)
+    .then((item) => {
+      console.log(item);
+      res.json(item);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 module.exports = {
   testOrder,
   createOrder,
-  showOrderDetail
+  showOrder,
+  orderByTable,
+  showOrderDetail,
+  updateOrderStatus,
 };

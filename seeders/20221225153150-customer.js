@@ -16,8 +16,9 @@ module.exports = {
           lastname: "Doe",
           phone: "011-111-1111",
           email: "johndoe@mail.com",
-          username: "johndoe",
-          password: "1234",
+          username: "test",
+          password: "$2a$10$rNZlqyhuEqAZq7J9poyaU.5fuQlmCiPwv3f.ypONAKOu4AqyJpy4u",
+          // 1234ASdf!
         },
         {
           firstname: "Jane",
