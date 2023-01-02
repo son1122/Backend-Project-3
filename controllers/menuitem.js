@@ -12,10 +12,11 @@ const getAllMenuItem = async (req, res) => {
   }
 };
 
-//Get all menu items by category, so that when user choose between category the orderview will show only the chosen category (default is "food", see order.js in client)
+// Find all menu items by category
+// 1. Find all menuitems, where category is the param passed from the client
+// 2. Response only items with matched category Id
 const allMenuItemByCategory = async (req, res) => {
   try {
-    console.log("req.params.id", req.params.catid);
     const categoryId = req.params.catid;
     await MenuItems.findAll({
       where: { category: `${categoryId}` },
@@ -28,6 +29,10 @@ const allMenuItemByCategory = async (req, res) => {
 };
 
 //Get menu item by query given from the search bar.
+// 1. Declare a query variable and assign it with the query parameter we get as we write in client >> http.../search?q=${category}
+// 2. if q=food, then the query variable will be assigned with food
+// 3. If query value is exist we find all menu items where name matches the query
+// 4. Else statement LINE:45 is for setting default value.
 const searchMenuItem = async (req, res) => {
   try {
     const { q: query } = req.query;

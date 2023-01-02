@@ -13,19 +13,19 @@ const testOrder = (req, res) => {
       console.log(err);
     });
 };
-const createOrder = async (req, res) => {
-  // I set customer to null since we currently not supporting customerId
-  const { menuItems, table_number, customer_id, order_date, status } = req.body;
 
-  // Create new order which takes data from the req.body above.
+//Creating order
+// 1. Retrieve req.body and assign to variables.
+// 2. Create order from the variables received.
+// 3. For each menuItems we received if menuitem.id exist create orderdetail for those menu items.
+const createOrder = async (req, res) => {
+  const { menuItems, table_number, customer_id, order_date, status } = req.body;
   const order = await Order.create({
     table_number,
     customer_id,
     order_date,
     status,
   });
-
-  //Looping through the items received, (can use mapping in case using promises but i dont know how)
   for (const menuItem of menuItems) {
     if (menuItem.id) {
       await OrderDetail.create({
@@ -35,14 +35,15 @@ const createOrder = async (req, res) => {
       });
     }
   }
-
-  // show Ordersdetail
-
   res.json({
     success: { message: "Added order successfully." },
   });
 };
-//Update order status after clicking confirm (testing)
+
+//Update Order Status
+// 1. This function will findall order using param, and the status of the table must be inprogress.
+// 2. Because the orders of selected table that have orders will always be "inprogress"
+// 3. Then .then and use the retrieved data map and update the status to completed where the id matched.
 const updateOrderStatus = async (req, res) => {
   await Order.findAll({
     where: { table_number: req.params.tableNumber, status: "inprogress" },
@@ -56,29 +57,29 @@ const updateOrderStatus = async (req, res) => {
     })
     .catch((err) => {
       console.log(err);
-      // throw new Error(err.message);
     });
 };
+
+// Find all orderdetail
 const showOrderDetail = (req, res) => {
   OrderDetail.findAll().then((orderDetail) => {
-    console.log("fucntion is working");
     res.json(orderDetail);
   });
 };
 
+// Find all order by table number that status is inprogress
 const orderByTable = (req, res) => {
   Order.findAll({
     where: { table_number: req.params.index, status: "inprogress" },
   }).then((item) => {
-    console.log("fucntion is working");
     res.json(item);
   });
 };
 
+//Show order by param
 const showOrder = (req, res) => {
   Order.findByPk(req.params.index)
     .then((item) => {
-      console.log(item);
       res.json(item);
     })
     .catch((err) => {
