@@ -4,7 +4,6 @@ const { Op } = require("sequelize");
 const getAllMenuItem = async (req, res) => {
   try {
     await MenuItems.findAll().then((menuitems) => {
-      console.log("Menu Items >> ", menuitems);
       res.json(menuitems);
     });
   } catch (err) {

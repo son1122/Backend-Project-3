@@ -6,12 +6,9 @@ const OrderDetail = require("../models").OrderDetail;
 const testOrder = (req, res) => {
   Order.findAll()
     .then((item) => {
-      console.log(item);
       res.json(item);
     })
-    .catch((err) => {
-      console.log(err);
-    });
+    .catch((err) => {});
 };
 
 //Creating order
@@ -55,9 +52,7 @@ const updateOrderStatus = async (req, res) => {
         { where: { id: orderIds } }
       ).then(() => ({ success: true }));
     })
-    .catch((err) => {
-      console.log(err);
-    });
+    .catch((err) => {});
 };
 
 // Find all orderdetail
@@ -82,9 +77,7 @@ const showOrder = (req, res) => {
     .then((item) => {
       res.json(item);
     })
-    .catch((err) => {
-      console.log(err);
-    });
+    .catch((err) => {});
 };
 
 module.exports = {

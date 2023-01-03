@@ -10,18 +10,6 @@ const getAllTable = async (req, res) => {
   }
 };
 
-const show = (req, res) => {
-  Fruit.findByPk(req.params.index)
-  .then(fruit =>{
-      res.render('show.ejs', { //second param must be an object
-          fruit: fruit
-      });
-  })
-  
-}
-
-
-
 module.exports = {
   getAllTable,
 };
