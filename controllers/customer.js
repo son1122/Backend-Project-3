@@ -169,7 +169,7 @@ const edit = (req, res) => {
     ).then((r) => {});
   }
 };
-const data = (req, res) => {
+const data = (req, response) => {
   const bearerHeader = req.headers["authorization"];
   if (typeof bearerHeader !== "undefined") {
     const bearer = bearerHeader.split(" ");
@@ -196,7 +196,7 @@ const data = (req, res) => {
         order: [["id", "ASC"]],
         attributes: ["id"],
       }).then((res) => {
-        res.json(res);
+        response.json(res);
       });
     } catch (err) {
       res.status(500).send({ message: "Order not found." });
