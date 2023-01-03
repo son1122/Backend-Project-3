@@ -147,7 +147,7 @@ const getSeller= async (req, res) => {
         res.status(500).send({ message: "Seller not found." });
     }
 };
-const getLocationSeller =()=>{
+const getLocationSeller =(req, res)=>{
     try {
         Seller.findAll( {
                 include:[{
