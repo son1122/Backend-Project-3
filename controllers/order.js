@@ -6,7 +6,6 @@ const OrderDetail = require("../models").OrderDetail;
 const testOrder = (req, res) => {
   Order.findAll()
     .then((item) => {
-      console.log(item);
       res.json(item);
     })
     .catch((err) => {
