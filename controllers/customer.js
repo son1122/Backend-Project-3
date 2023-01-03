@@ -151,9 +151,7 @@ const edit = (req, res) => {
           {
             where: { username: req.user.username },
           }
-        ).then((r) => {
-          console.log(r);
-        });
+        ).then((r) => {});
       });
     });
   } else {
@@ -168,9 +166,7 @@ const edit = (req, res) => {
       {
         where: { username: req.user.username },
       }
-    ).then((r) => {
-      console.log(r);
-    });
+    ).then((r) => {});
   }
 };
 const data = (req, res) => {
