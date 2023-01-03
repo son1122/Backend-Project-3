@@ -199,11 +199,11 @@ const data = (req, response) => {
         response.json(res);
       });
     } catch (err) {
-      res.status(500).send({ message: "Order not found." });
+      response.status(500).send({ message: "Order not found." });
     }
   });
 };
-const dataId = (req, res) => {
+const dataId = (req, response) => {
   const bearerHeader = req.headers["authorization"];
   if (typeof bearerHeader !== "undefined") {
     const bearer = bearerHeader.split(" ");
@@ -225,7 +225,7 @@ const dataId = (req, res) => {
         ],
         attributes: ["id"],
       }).then((res) => {
-        res.json(res);
+        response.json(res);
       });
     } catch (err) {
       res.status(500).send({ message: "Order not found." });
