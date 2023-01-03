@@ -11,5 +11,6 @@ router.get('/order', ctrl.dashboard.getOrder);
 router.get('/ingredient', ctrl.dashboard.getIngredient);
 router.get('/location', ctrl.dashboard.getMenu);
 router.get('/seller', ctrl.dashboard.getSeller);
-
+router.get('/location/seller', ctrl.dashboard.getLocationSeller);
+router.get('/location/customer', ctrl.dashboard.getLocationSeller);
 module.exports = router

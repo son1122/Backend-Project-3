@@ -7,6 +7,7 @@ const Chef = require("../models").Chef
 const Waiter = require("../models").Waiter
 const Order = require("../models").Order
 const Seller = require("../models").Seller
+const Location = require("../models").Location
 const testDashboard = (req, res) => {
     res.json("test_dashboard")
 }
@@ -29,7 +30,7 @@ const getMenuDashboard = async (req, res) => {
             })
     } catch (err) {
         console.log(err)
-        res.status(500).send({ message: "Order not found." });
+        res.status(500).send({ message: "Menu not found." });
     }
 };
 const getMenu= async (req, res) => {
@@ -45,7 +46,7 @@ const getMenu= async (req, res) => {
             })
     } catch (err) {
         console.log(err)
-        res.status(500).send({ message: "Order not found." });
+        res.status(500).send({ message: "Menuitem not found." });
     }
 };
 const getCustomer= async (req, res) => {
@@ -61,7 +62,7 @@ const getCustomer= async (req, res) => {
             })
     } catch (err) {
         console.log(err)
-        res.status(500).send({ message: "Order not found." });
+        res.status(500).send({ message: "Customer not found." });
     }
 };
 const getWaiter= async (req, res) => {
@@ -77,7 +78,7 @@ const getWaiter= async (req, res) => {
             })
     } catch (err) {
         console.log(err)
-        res.status(500).send({ message: "Order not found." });
+        res.status(500).send({ message: "Waiter not found." });
     }
 };
 const getChef= async (req, res) => {
@@ -93,7 +94,7 @@ const getChef= async (req, res) => {
             })
     } catch (err) {
         console.log(err)
-        res.status(500).send({ message: "Order not found." });
+        res.status(500).send({ message: "Chef not found." });
     }
 };
 const getOrder= async (req, res) => {
@@ -128,7 +129,7 @@ const getIngredient= async (req, res) => {
             })
     } catch (err) {
         console.log(err)
-        res.status(500).send({ message: "Order not found." });
+        res.status(500).send({ message: "Ingredient not found." });
     }
 };
 const getSeller= async (req, res) => {
@@ -143,9 +144,24 @@ const getSeller= async (req, res) => {
             })
     } catch (err) {
         console.log(err)
-        res.status(500).send({ message: "Order not found." });
+        res.status(500).send({ message: "Seller not found." });
     }
 };
+const getLocationSeller =()=>{
+    try {
+        Seller.findAll( {
+                include:[{
+                    model: Location,
+                }]
+        })
+            .then(fruit => {
+                res.json(fruit)
+            })
+    } catch (err) {
+        console.log(err)
+        res.status(500).send({ message: "Location not found." });
+    }
+}
 module.exports = {
 getMenuDashboard,
     getMenu,
@@ -155,6 +171,6 @@ getMenuDashboard,
     getOrder,
     getIngredient,
     getSeller,
-
+    getLocationSeller,
 
 }
