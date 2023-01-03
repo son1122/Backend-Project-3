@@ -233,15 +233,28 @@ const dataId = (req, res) => {
   });
 };
 const menu = async (req, res) => {
-  try {
-    await MenuItem.findAll({
-      attributes: ["name"],
-    }).then((res) => {
-      res.json(res);
-    });
-  } catch (err) {
-    res.status(500).send({ message: "menu found." });
+  const bearerHeader = req.headers["authorization"];
+  if (typeof bearerHeader !== "undefined") {
+    const bearer = bearerHeader.split(" ");
+    const bearerToken = bearer[1];
+    req.token = bearerToken;
   }
+
+  jwt.verify(req.token, process.env.JWT_SECRET, (err, decodedUser) => {
+    if (err || !decodedUser)
+      return res.status(401).json({error: "Unauthorized Request"})
+
+
+    try {
+       MenuItem.findAll({
+        attributes: ["name"],
+      }).then((res) => {
+        res.json(res);
+      });
+    } catch (err) {
+      res.status(500).send({message: "menu found."});
+    }
+  })
 };
 const deleteUser = async (req, res) => {
   const bearerHeader = req.headers["authorization"];
