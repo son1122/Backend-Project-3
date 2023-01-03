@@ -232,7 +232,7 @@ const dataId = (req, res) => {
     }
   });
 };
-const menu = async (req, res) => {
+const menu = async (req, response) => {
   const bearerHeader = req.headers["authorization"];
   if (typeof bearerHeader !== "undefined") {
     const bearer = bearerHeader.split(" ");
@@ -242,14 +242,13 @@ const menu = async (req, res) => {
 
   jwt.verify(req.token, process.env.JWT_SECRET, (err, decodedUser) => {
     if (err || !decodedUser)
-      return res.status(401).json({error: "Unauthorized Request"})
-
-
+      return response.status(401).json({error: "Unauthorized Request"})
+    
     try {
        MenuItem.findAll({
         attributes: ["name"],
       }).then((res) => {
-        res.json(res);
+        response.json(res);
       });
     } catch (err) {
       res.status(500).send({message: "menu found."});
