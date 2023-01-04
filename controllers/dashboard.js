@@ -149,6 +149,22 @@ const getLocationSeller = (req, res) => {
     res.status(500).send({ message: "Location not found." });
   }
 };
+const getLocationCustomer = (req, res) => {
+  try {
+    Customer.findAll({
+      include: [
+        {
+          model: Location,
+        },
+      ],
+    }).then((fruit) => {
+      res.json(fruit);
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({ message: "Location not found." });
+  }
+};
 module.exports = {
   getMenuDashboard,
   getMenu,
@@ -159,4 +175,5 @@ module.exports = {
   getIngredient,
   getSeller,
   getLocationSeller,
+  getLocationCustomer,
 };
