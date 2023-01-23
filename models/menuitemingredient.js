@@ -1,25 +1,26 @@
 'use strict';
 const {
-  Model
+    Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class MenuItemIngredient extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
+    class MenuItemIngredient extends Model {
+        /**
+         * Helper method for defining associations.
+         * This method is not a part of Sequelize lifecycle.
+         * The `models/index` file will call this method automatically.
+         */
+        static associate(models) {
+            // define association here
+        }
     }
-  }
-  MenuItemIngredient.init({
-    menuItemId: DataTypes.INTEGER,
-    ingredientId: DataTypes.INTEGER,
-    quantity: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'MenuItemIngredient',
-  });
-  return MenuItemIngredient;
+
+    MenuItemIngredient.init({
+        menuItemId: DataTypes.INTEGER,
+        ingredientId: DataTypes.INTEGER,
+        quantity: DataTypes.INTEGER
+    }, {
+        sequelize,
+        modelName: 'MenuItemIngredient',
+    });
+    return MenuItemIngredient;
 };
