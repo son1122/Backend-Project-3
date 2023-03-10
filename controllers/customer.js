@@ -6,6 +6,9 @@ const jwt = require("jsonwebtoken");
 const {MenuItem, Ingredient} = require("../models");
 const {decode} = require("jsonwebtoken");
 
+
+
+
 const signup = (req, res) => {
     bcrypt.genSalt(10, (err, salt) => {
         if (err) return res.status(500).json(err);
